@@ -1,9 +1,9 @@
 package com.example.foodOrderAndTrackingApp
 
 import android.os.Bundle
-import andorid.widget.Button
+import android.widget.Button
 import android.widget.EditText
-import andorid.widget.Toast
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -16,7 +16,7 @@ class CreateFood : AppCompatActivity() {
     private lateinit var btnAddFood: Button
     private val food = Food()
 
-    data class food(
+    data class Food(
         val name: String
         val category: String
         val price: int
@@ -27,10 +27,11 @@ class CreateFood : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_create_food)
 
-        edtName = findViewById(R.id.edt_name)
-        edtCategory = findViewById(R.id.edt_category)
-        edtCategory = findViewById(R.id.edt_price)
-        edtCategory = findViewById(R.id.btn_add_price)
+        edtName = findViewById(R.id.food_name)
+        edtDescription = findViewById(R.id.food_description)
+        edtPrice = findViewById(R.id.food_price)
+        edtQuota = findViewById(R.id.quota)
+        btnAddFood = findViewById(R.id.create_food_button)
         
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -38,7 +39,7 @@ class CreateFood : AppCompatActivity() {
             insets
         }
         btnAddFood.setOnClickListener{
-            addFood
+            addFood()
         }
     }
     private fun addFood(){
@@ -51,7 +52,7 @@ class CreateFood : AppCompatActivity() {
             Toast.makeText(this,"food add successful",Toast.LENGTH_SHORT).show()
             finish()
         }else{
-            Toast.makeText(this,"plase input food",LENGTH_SHORT).show()
+            Toast.makeText(this,"plase input food",Toast.LENGTH_SHORT).show()
         }
     }
 }
