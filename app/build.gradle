@@ -42,6 +42,7 @@ dependencies {
     implementation libs.androidx.constraintlayout
     implementation libs.firebase.auth
     implementation libs.firebase.firestore
+    implementation libs.androidx.monitor
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core
@@ -52,4 +53,19 @@ dependencies {
     // Add the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation(libs.google.firebase.auth)
+
+    testImplementation libs.mockito.core
+    testImplementation libs.mockito.kotlin
+    testImplementation libs.dexmaker
+    testImplementation libs.dexmaker.mockito
+//    testImplementation libs.mockito.core.v3124
+//    testImplementation libs.mockito.android
+//    androidTestImplementation libs.androidx.core
+    androidTestImplementation 'androidx.test:core:1.4.0'
+//    androidTestImplementation 'androidx.test:core:1.4.0'
+    androidTestImplementation 'org.mockito:mockito-android:3.12.4'
+    testImplementation "org.robolectric:robolectric:4.9"
+
+
+
 }

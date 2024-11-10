@@ -7,8 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.button.MaterialButton
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -26,6 +30,17 @@ class MainActivity : AppCompatActivity() {
         findViewById<MaterialButton>(R.id.btn_login).setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        if(auth.currentUser != null){
+
+        } else {
+
+        }
 
     }
+
 }
