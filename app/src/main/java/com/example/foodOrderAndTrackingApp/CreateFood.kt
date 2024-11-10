@@ -1,4 +1,4 @@
-package com.example.foodOrderAndTrackingApp
+com.example.foodOrderAndTrackingApp
 
 import android.os.Bundle
 import android.widget.Button
