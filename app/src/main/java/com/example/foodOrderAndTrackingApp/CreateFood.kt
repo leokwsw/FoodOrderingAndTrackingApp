@@ -17,9 +17,10 @@ class CreateFood : AppCompatActivity() {
     private val food = Food()
 
     data class Food(
-        val name: String
-        val category: String
-        val price: int
+        val name: String,
+        val category: String,
+        val price: Double,
+        val quota: Int
     )
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +29,7 @@ class CreateFood : AppCompatActivity() {
         setContentView(R.layout.activity_create_food)
 
         edtName = findViewById(R.id.food_name)
-        edtDescription = findViewById(R.id.food_description)
+        edtCategory = findViewById(R.id.food_description)
         edtPrice = findViewById(R.id.food_price)
         edtQuota = findViewById(R.id.quota)
         btnAddFood = findViewById(R.id.create_food_button)
@@ -48,7 +49,7 @@ class CreateFood : AppCompatActivity() {
         val price = edt[rice.text.toString().toDoubleOrNull()
 
         if(name.isNotEmpty() && category.isNotEmpty() && price != null) {
-            food.addFood(name, category, price)
+            val food = Food(name, category, price, quota)
             Toast.makeText(this,"food add successful",Toast.LENGTH_SHORT).show()
             finish()
         }else{
