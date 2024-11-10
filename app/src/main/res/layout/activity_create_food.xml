@@ -1,86 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:fillViewport="true">
 
-    <TextView
-        android:text="Create Food Item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp"/>
-
-    <EditText
-        android:id="@+id/food_name"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Food Name"
-        android:layout_marginBottom="16dp"/>
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <EditText
-        android:id="@+id/food_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Food Description"
-        android:layout_marginBottom="16dp"/>
+        <TextView
+            android:text="Create Food Item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"/>
 
-    <EditText
-        android:id="@+id/food_price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Food Price"
-        android:inputType="numberDecimal"
-        android:layout_marginBottom="16dp"/>
+        <EditText
+            android:id="@+id/food_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Food Name"
+            android:layout_marginBottom="16dp"/>
 
-    <TextView
-        android:text="Image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"/>
+        <EditText
+            android:id="@+id/food_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Food Description"
+            android:layout_marginBottom="16dp"/>
 
-    <ImageView
-        android:id="@+id/image_preview"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:background="@android:color/darker_gray"
-        android:layout_marginBottom="16dp"/>
+        <EditText
+            android:id="@+id/food_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Food Price"
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="16dp"/>
 
-    <Button
-        android:id="@+id/select_image_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Select Image"
-        android:layout_marginBottom="16dp"/>
+        <TextView
+            android:text="Image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"/>
 
-    <EditText
-        android:id="@+id/quota"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Quota"
-        android:inputType="number"
-        android:layout_marginBottom="16dp"/>
+        <ImageView
+            android:id="@+id/image_preview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:background="@android:color/darker_gray"
+            android:layout_marginBottom="16dp"/>
 
-    <TextView
-        android:text="Available"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"/>
+        <Button
+            android:id="@+id/select_image_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Image"
+            android:layout_marginBottom="16dp"/>
 
-    <Switch
-        android:id="@+id/available_switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/quota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Quota"
+            android:inputType="number"
+            android:layout_marginBottom="16dp"/>
 
-    <Button
-        android:id="@+id/create_food_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Create Food"
-        android:layout_marginTop="24dp"/>
+        <TextView
+            android:text="Available"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"/>
 
-</LinearLayout>
+        <Switch
+            android:id="@+id/available_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/create_food_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create Food"
+            android:layout_marginTop="24dp"/>
+
+    </LinearLayout>
+</ScrollView>
