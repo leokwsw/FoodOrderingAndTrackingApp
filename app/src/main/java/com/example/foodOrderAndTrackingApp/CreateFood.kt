@@ -63,7 +63,7 @@ class CreateFood : AppCompatActivity() {
             Toast.makeText(this, "Food added successfully!", Toast.LENGTH_SHORT).show()
             finish() 
         } else {
-            Toast.makeText(this, "Please input valid food information", Toast.LENGTH_SHORT).show() // 修正拼写错误
+            Toast.makeText(this, "Please input valid food information", Toast.LENGTH_SHORT).show() 
         }
     }
 }
