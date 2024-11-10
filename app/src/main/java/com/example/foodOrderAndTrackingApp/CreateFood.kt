@@ -32,6 +32,7 @@ class CreateFood : AppCompatActivity() {
         edtCategory = findViewById(R.id.food_description)
         edtPrice = findViewById(R.id.food_price)
         edtQuota = findViewById(R.id.quota)
+        availableSwitch = findViewById(R.id.available_switch)
         btnAddFood = findViewById(R.id.create_food_button)
         
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -46,7 +47,9 @@ class CreateFood : AppCompatActivity() {
     private fun addFood(){
         val name= edtName.text.toString()
         val category = edtCategory.text.toString()
-        val price = edt[rice.text.toString().toDoubleOrNull()
+        val price = edtPrice.text.toString().toDoubleOrNull()
+        val quota = edtQuota.text.toString().toIntOrNull()
+        val isAvailable = availableSwitch.isChecked
 
         if(name.isNotEmpty() && category.isNotEmpty() && price != null) {
             val food = Food(name, category, price, quota)
