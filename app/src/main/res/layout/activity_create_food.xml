@@ -1,80 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.foodOrderAndTrackingApp.CreateFood">
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <TextView
+        android:text="Create Food Item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/food_name"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:hint="Food Name"
+        android:layout_marginBottom="16dp"/>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="16dp"
-            android:text="Create Food Item"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+    <EditText
+        android:id="@+id/food_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Food Description"
+        android:layout_marginBottom="16dp"/>
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/food_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:hint="Food Name" />
+    <EditText
+        android:id="@+id/food_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Food Price"
+        android:inputType="numberDecimal"
+        android:layout_marginBottom="16dp"/>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Image" />
+    <TextView
+        android:text="Image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"/>
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_preview"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginBottom="16dp"
-            android:background="@android:color/darker_gray"
-            android:scaleType="centerCrop" />
+    <ImageView
+        android:id="@+id/image_preview"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:background="@android:color/darker_gray"
+        android:layout_marginBottom="16dp"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/select_image_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Select Image" />
+    <Button
+        android:id="@+id/select_image_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Image"
+        android:layout_marginBottom="16dp"/>
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/quota"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:hint="Quota"
-            android:inputType="number" />
+    <EditText
+        android:id="@+id/quota"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Quota"
+        android:inputType="number"
+        android:layout_marginBottom="16dp"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Available" />
+    <TextView
+        android:text="Available"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"/>
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/available_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+    <Switch
+        android:id="@+id/available_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/create_food_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Create Food" />
+    <Button
+        android:id="@+id/create_food_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Food"
+        android:layout_marginTop="24dp"/>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
