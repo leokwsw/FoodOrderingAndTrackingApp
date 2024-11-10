@@ -15,6 +15,12 @@ class CreateFood : AppCompatActivity() {
     private lateinit var edtPrice: EditText
     private lateinit var btnAddFood: Button
     private val food = Food()
+
+    data class food(
+        val name: String
+        val category: String
+        val price: int
+    )
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
