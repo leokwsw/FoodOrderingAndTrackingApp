@@ -1,18 +1,14 @@
 package com.example.foodOrderAndTrackingApp
 
-class Food(
-    val name: String,
-    val category: String,
-    val price: Int
-) {
-    private val foodList: MutableList<Food> = mutableListOf()
+class Foodmanager {
+    private val foodList: MutableList<CreateFood.Food> = mutableListOf() 
 
-    fun addFood(name: String, category: String, price: Int) {
-        val food = Food(name, category, price)
+    fun addFood(name: String, category: String, price: Double, quota: Int?) {
+        val food = CreateFood.Food(name, category, price, quota) 
         foodList.add(food)
     }
 
-    fun getAllFoods(): List<Food> {  
+    fun getAllFoods(): List<CreateFood.Food> { 
         return foodList
     }
 }
