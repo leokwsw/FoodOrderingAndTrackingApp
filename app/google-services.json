@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "732009116858",
+    "project_id": "food-order-and-tracking-system",
+    "storage_bucket": "food-order-and-tracking-system.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:732009116858:android:8a5804716cbb186f3fbe83",
+        "android_client_info": {
+          "package_name": "com.example.foodOrderAndTrackingApp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyOKAdEhcCMqjSdzgUXyGrafORu2-FnmM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:732009116858:android:a2dd09e627a427e43fbe83",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyOKAdEhcCMqjSdzgUXyGrafORu2-FnmM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
