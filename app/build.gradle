@@ -43,6 +43,7 @@ dependencies {
     implementation libs.firebase.auth
     implementation libs.firebase.firestore
     implementation libs.androidx.monitor
+    implementation libs.firebase.storage
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core
@@ -63,6 +64,7 @@ dependencies {
     androidTestImplementation libs.mockito.android
 
     implementation libs.androidx.recyclerview
+    implementation libs.glide
 
 
 }

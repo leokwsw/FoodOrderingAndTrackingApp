@@ -26,5 +26,9 @@ class ManagementFoodActivity : AppCompatActivity() {
                 this.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             })
         }
+
+        findViewById<MaterialButton>(R.id.add_food_button).setOnClickListener {
+            startActivity(Intent(this, CreateFoodActivity::class.java))
+        }
     }
 }
