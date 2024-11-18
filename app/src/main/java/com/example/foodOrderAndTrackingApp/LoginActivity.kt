@@ -58,15 +58,30 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        findViewById<MaterialButton>(R.id.login_button).setOnClickListener {
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        startActivity(Intent(this, ManagementFoodActivity::class.java))
-                    } else {
-                        Toast.makeText(this, "Authentication failed.", Toast.LENGTH_LONG).show()
+        findViewById<MaterialButton>(R.id.login_button).apply {
+            setOnClickListener {
+                this.isEnabled = false
+                this.text = "Loading"
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this@LoginActivity) { task ->
+                        if (task.isSuccessful) {
+                            startActivity(
+                                Intent(
+                                    this@LoginActivity,
+                                    ManagementFoodActivity::class.java
+                                )
+                            )
+                        } else {
+                            this.text = "Login"
+                            this.isEnabled = true
+                            Toast.makeText(
+                                this@LoginActivity,
+                                "Authentication failed.",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
                     }
-                }
+            }
         }
 
     }
