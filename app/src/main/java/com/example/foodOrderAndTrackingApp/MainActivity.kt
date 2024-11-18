@@ -26,8 +26,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, ManagementFoodActivity::class.java).apply {
                 this.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             })
-        } else {
-            Toast.makeText(this, "Login not ed", Toast.LENGTH_LONG).show()
         }
 
         setContentView(R.layout.activity_main)
