@@ -1,6 +1,7 @@
 package com.example.foodOrderAndTrackingApp
 
 import android.app.ProgressDialog
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
@@ -17,6 +18,10 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
@@ -126,13 +131,35 @@ class CreateFoodActivity : AppCompatActivity() {
             .addOnSuccessListener {
                 imageRef
                     .downloadUrl.addOnSuccessListener { downloadUrl ->
-                        pd.dismiss()
                         foodImageUrl = downloadUrl.toString()
                         Glide
                             .with(this@CreateFoodActivity)
                             .load(foodImageUrl)
                             .centerCrop()
+                            .listener(object : RequestListener<Drawable> {
+                                override fun onResourceReady(
+                                    resource: Drawable,
+                                    model: Any,
+                                    target: Target<Drawable>?,
+                                    dataSource: DataSource,
+                                    isFirstResource: Boolean
+                                ): Boolean {
+                                    pd.dismiss()
+                                    return false
+                                }
+
+                                override fun onLoadFailed(
+                                    e: GlideException?,
+                                    model: Any?,
+                                    target: Target<Drawable>,
+                                    isFirstResource: Boolean
+                                ): Boolean {
+                                    pd.dismiss()
+                                    return false
+                                }
+                            })
                             .into(foodImageView)
+
                     }
             }
             .addOnFailureListener { exception ->
