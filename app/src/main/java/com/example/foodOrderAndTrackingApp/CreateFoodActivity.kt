@@ -19,6 +19,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.Firebase
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
 import com.google.firebase.storage.storage
 import java.util.UUID
 
@@ -34,6 +36,8 @@ class CreateFoodActivity : AppCompatActivity() {
     private lateinit var foodImageView: AppCompatImageView
     private var foodImageUrl: String = ""
 
+    private lateinit var db: FirebaseFirestore
+
     data class Food(
         val name: String, val category: String, val price: Double, val quota: Int?
     )
@@ -43,6 +47,7 @@ class CreateFoodActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_create_food)
 
+        db = Firebase.firestore
 
         edtName = findViewById(R.id.food_name)
         edtCategory = findViewById(R.id.food_description)
@@ -119,12 +124,10 @@ class CreateFoodActivity : AppCompatActivity() {
 
         imageRef.putFile(imageUri)
             .addOnSuccessListener {
-//                Toast.makeText(this, "Image uploaded successfully!", Toast.LENGTH_SHORT).show()
                 imageRef
                     .downloadUrl.addOnSuccessListener { downloadUrl ->
                         pd.dismiss()
                         foodImageUrl = downloadUrl.toString()
-//                        Toast.makeText(this, "Image URL: $downloadUrl", Toast.LENGTH_LONG).show()
                         Glide
                             .with(this@CreateFoodActivity)
                             .load(foodImageUrl)
@@ -146,11 +149,26 @@ class CreateFoodActivity : AppCompatActivity() {
         val quota = edtQuota.text.toString().toIntOrNull()
         val isAvailable = availableSwitch.isChecked
 
-
         if (name.isNotEmpty() && category.isNotEmpty() && price != null) {
-            val food = Food(name, category, price, quota)
-            Toast.makeText(this, "Food added successfully!", Toast.LENGTH_SHORT).show()
-            finish()
+//            db.collection("food").document("AAAAa").set("")
+
+            db.collection("food").add(
+                hashMapOf(
+                    "name" to name,
+                    "category" to category,
+                    "price" to price,
+                    "quota" to quota,
+                    "image" to foodImageUrl,
+                    "is_available" to isAvailable
+                )
+            ).addOnSuccessListener {
+//            val food = Food(name, category, price, quota)
+                Toast.makeText(this, "Food added successfully!", Toast.LENGTH_SHORT).show()
+                finish()
+            }.addOnFailureListener {
+                Toast.makeText(this, "Please input valid food information", Toast.LENGTH_SHORT)
+                    .show()
+            }
         } else {
             Toast.makeText(this, "Please input valid food information", Toast.LENGTH_SHORT).show()
         }
