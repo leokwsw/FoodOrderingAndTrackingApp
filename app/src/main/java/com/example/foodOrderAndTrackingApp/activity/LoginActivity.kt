@@ -1,9 +1,7 @@
-package com.example.foodOrderAndTrackingApp
+package com.example.foodOrderAndTrackingApp.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +9,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
+import com.example.foodOrderAndTrackingApp.R
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

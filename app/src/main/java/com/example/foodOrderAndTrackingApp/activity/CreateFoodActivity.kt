@@ -1,4 +1,4 @@
-package com.example.foodOrderAndTrackingApp
+package com.example.foodOrderAndTrackingApp.activity
 
 import android.app.ProgressDialog
 import android.graphics.drawable.Drawable
@@ -14,6 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -22,6 +23,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.example.foodOrderAndTrackingApp.R
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
@@ -32,7 +34,6 @@ import java.util.UUID
 
 class CreateFoodActivity : AppCompatActivity() {
     private lateinit var edtName: AppCompatEditText
-    private lateinit var edtCategory: AppCompatEditText
     private lateinit var edtPrice: AppCompatEditText
     private lateinit var edtQuota: AppCompatEditText
     private lateinit var availableSwitch: SwitchCompat
@@ -43,9 +44,12 @@ class CreateFoodActivity : AppCompatActivity() {
 
     private lateinit var db: FirebaseFirestore
 
-    data class Food(
-        val name: String, val category: String, val price: Double, val quota: Int?
-    )
+    private var isNewFood = true
+    private var foodId = ""
+
+    companion object {
+        const val FOOD_ID = "food_id"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,12 +59,52 @@ class CreateFoodActivity : AppCompatActivity() {
         db = Firebase.firestore
 
         edtName = findViewById(R.id.food_name)
-        edtCategory = findViewById(R.id.food_description)
         edtPrice = findViewById(R.id.food_price)
         edtQuota = findViewById(R.id.quota)
         availableSwitch = findViewById(R.id.available_switch)
         btnAddFood = findViewById(R.id.create_food_button)
         foodImageView = findViewById(R.id.image_preview)
+
+        intent.extras?.let {
+            if (it.containsKey(FOOD_ID) && it.getString(FOOD_ID) != null) {
+
+                foodId = it.getString(FOOD_ID)!!
+
+                db.collection("food").document(foodId).get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+
+                            Log.d("RunTime", "${task.result.data}")
+                            if (!task.result.data.isNullOrEmpty()) {
+                                val data = task.result.data!!
+                                edtName.setText(data["name"].toString())
+                                val price = data["price"].toString().toFloatOrNull() ?: 0.0
+                                edtPrice.setText(String.format("%s", price))
+                                val quota = data["quota"].toString().toIntOrNull() ?: 0
+                                edtQuota.setText(String.format("%s", quota))
+
+                                foodImageUrl = data["image"].toString()
+                                Glide
+                                    .with(this)
+                                    .load(foodImageUrl)
+                                    .centerInside()
+                                    .into(foodImageView)
+
+                                val isAvailable = data["isAvailable"].toString() == "true"
+                                availableSwitch.isChecked = isAvailable
+
+                                findViewById<AppCompatTextView>(R.id.tv_title).text = "Edit Food Item"
+                                btnAddFood.text = "Edit Food"
+                            }
+
+                        }
+                    }
+
+                isNewFood = false
+            } else {
+                isNewFood = true
+            }
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -135,7 +179,7 @@ class CreateFoodActivity : AppCompatActivity() {
                         Glide
                             .with(this@CreateFoodActivity)
                             .load(foodImageUrl)
-                            .centerCrop()
+                            .centerInside()
                             .listener(object : RequestListener<Drawable> {
                                 override fun onResourceReady(
                                     resource: Drawable,
@@ -171,30 +215,43 @@ class CreateFoodActivity : AppCompatActivity() {
 
     private fun addFood() {
         val name = edtName.text.toString()
-        val category = edtCategory.text.toString()
         val price = edtPrice.text.toString().toDoubleOrNull()
         val quota = edtQuota.text.toString().toIntOrNull()
         val isAvailable = availableSwitch.isChecked
 
-        if (name.isNotEmpty() && category.isNotEmpty() && price != null) {
-//            db.collection("food").document("AAAAa").set("")
-
-            db.collection("food").add(
-                hashMapOf(
-                    "name" to name,
-                    "category" to category,
-                    "price" to price,
-                    "quota" to quota,
-                    "image" to foodImageUrl,
-                    "is_available" to isAvailable
-                )
-            ).addOnSuccessListener {
-//            val food = Food(name, category, price, quota)
-                Toast.makeText(this, "Food added successfully!", Toast.LENGTH_SHORT).show()
-                finish()
-            }.addOnFailureListener {
-                Toast.makeText(this, "Please input valid food information", Toast.LENGTH_SHORT)
-                    .show()
+        if (name.isNotEmpty() && price != null) {
+            if (isNewFood) {
+                db.collection("food").add(
+                    hashMapOf(
+                        "name" to name,
+                        "price" to price,
+                        "quota" to quota,
+                        "image" to foodImageUrl,
+                        "is_available" to isAvailable
+                    )
+                ).addOnSuccessListener {
+                    Toast.makeText(this, "Food added successfully!", Toast.LENGTH_SHORT).show()
+                    finish()
+                }.addOnFailureListener {
+                    Toast.makeText(this, "Please input valid food information", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            } else {
+                db.collection("food").document(foodId).set(
+                    hashMapOf(
+                        "name" to name,
+                        "price" to price,
+                        "quota" to quota,
+                        "image" to foodImageUrl,
+                        "is_available" to isAvailable
+                    )
+                ).addOnSuccessListener {
+                    Toast.makeText(this, "Food edited successfully!", Toast.LENGTH_SHORT).show()
+                    finish()
+                }.addOnFailureListener {
+                    Toast.makeText(this, "Please input valid food information", Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
         } else {
             Toast.makeText(this, "Please input valid food information", Toast.LENGTH_SHORT).show()
