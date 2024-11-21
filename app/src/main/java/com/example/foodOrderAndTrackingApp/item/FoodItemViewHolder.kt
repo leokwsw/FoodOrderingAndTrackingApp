@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.PopupMenu
@@ -27,7 +28,7 @@ class FoodItemViewHolder(
     private var count: Int = 0
     private lateinit var food: Food
 
-    fun onBindData(data: Food) {
+    fun onBindData(data: Food, activityResultLauncher: ActivityResultLauncher<Intent>) {
         food = data
 
         itemView.findViewById<AppCompatTextView>(R.id.tv_title).apply {
@@ -66,7 +67,7 @@ class FoodItemViewHolder(
                 R.id.menu_edit -> {
                     val intent = Intent(context, CreateFoodActivity::class.java)
                     intent.putExtra(CreateFoodActivity.FOOD_ID, food.id)
-                    context.startActivity(intent)
+                    activityResultLauncher.launch(intent)
                     true
                 }
 

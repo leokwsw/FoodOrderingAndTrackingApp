@@ -1,10 +1,12 @@
 package com.example.foodOrderAndTrackingApp.activity
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -24,7 +26,7 @@ class ManagementFoodActivity : AppCompatActivity() {
 
     private var foodList: ArrayList<Food> = arrayListOf()
     private lateinit var db: FirebaseFirestore
-    private lateinit var adapter: FoodListAdapter
+    private lateinit var foodListAdapter: FoodListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,51 +51,30 @@ class ManagementFoodActivity : AppCompatActivity() {
             startActivity(Intent(this, CreateFoodActivity::class.java))
         }
 
-        adapter = FoodListAdapter(this, foodList)
+        val activityResultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    val size = foodList.size
+                    foodList.clear()
+                    foodListAdapter.notifyItemRangeChanged(0, size)
+                    getDatabaseData()
+                }
+            }
 
-
+        foodListAdapter = FoodListAdapter(this, foodList, activityResultLauncher)
 
         findViewById<RecyclerView>(R.id.rv_food_items_list).apply {
             val layoutManager = GridLayoutManager(this@ManagementFoodActivity, 2)
             this.layoutManager = layoutManager
 
-            db.collection("food").get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val docs: QuerySnapshot = task.result
+            getDatabaseData()
 
-                        docs.documents.forEachIndexed { index, document ->
-                            if (!document.data.isNullOrEmpty()) {
-                                val data = document.data!!
-                                val food = Food(
-                                    document.id,
-                                    data["name"].toString(),
-                                    data["price"].toString().toFloatOrNull() ?: 0.0,
-                                    data["quota"].toString().toIntOrNull() ?: 0,
-                                    data["image"].toString(),
-                                    data["isAvailable"].toString() == "true",
-                                )
-                                foodList.add(food)
-                                adapter?.notifyItemChanged(index)
-                            }
-                        }
-                    } else {
-                        Toast.makeText(this@ManagementFoodActivity, "No Food", Toast.LENGTH_LONG)
-                            .show()
-                    }
-                }
+            this.adapter = foodListAdapter
 
-            this.adapter = adapter
         }
     }
 
-    private fun getDatabaseData(reset: Boolean) {
-        if (reset) {
-            val size = foodList.size
-            foodList = arrayListOf()
-            adapter.notifyItemRangeChanged(0, size)
-        }
-        Log.d("TT", "AA")
+    private fun getDatabaseData() {
         db.collection("food").get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -111,19 +92,18 @@ class ManagementFoodActivity : AppCompatActivity() {
                                 data["isAvailable"].toString() == "true",
                             )
                             foodList.add(food)
-                            adapter.notifyItemChanged(index)
+                            foodListAdapter.notifyItemChanged(index)
                         }
                     }
                 } else {
-                    Toast.makeText(this@ManagementFoodActivity, "No Food", Toast.LENGTH_LONG)
+                    Toast
+                        .makeText(
+                            this@ManagementFoodActivity,
+                            "No Food",
+                            Toast.LENGTH_LONG
+                        )
                         .show()
                 }
             }
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        getDatabaseData(true)
     }
 }

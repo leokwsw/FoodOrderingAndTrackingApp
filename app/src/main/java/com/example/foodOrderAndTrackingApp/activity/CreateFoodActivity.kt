@@ -1,5 +1,6 @@
 package com.example.foodOrderAndTrackingApp.activity
 
+import android.app.Activity
 import android.app.ProgressDialog
 import android.graphics.drawable.Drawable
 import android.net.Uri
@@ -247,6 +248,7 @@ class CreateFoodActivity : AppCompatActivity() {
                     )
                 ).addOnSuccessListener {
                     Toast.makeText(this, "Food edited successfully!", Toast.LENGTH_SHORT).show()
+                    setResult(Activity.RESULT_OK)
                     finish()
                 }.addOnFailureListener {
                     Toast.makeText(this, "Please input valid food information", Toast.LENGTH_SHORT)
