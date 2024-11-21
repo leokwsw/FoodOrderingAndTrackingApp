@@ -232,6 +232,7 @@ class CreateFoodActivity : AppCompatActivity() {
                     )
                 ).addOnSuccessListener {
                     Toast.makeText(this, "Food added successfully!", Toast.LENGTH_SHORT).show()
+                    setResult(Activity.RESULT_OK)
                     finish()
                 }.addOnFailureListener {
                     Toast.makeText(this, "Please input valid food information", Toast.LENGTH_SHORT)

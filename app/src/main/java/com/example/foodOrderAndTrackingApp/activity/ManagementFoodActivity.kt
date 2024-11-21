@@ -47,10 +47,6 @@ class ManagementFoodActivity : AppCompatActivity() {
             })
         }
 
-        findViewById<MaterialButton>(R.id.add_food_button).setOnClickListener {
-            startActivity(Intent(this, CreateFoodActivity::class.java))
-        }
-
         val activityResultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
@@ -60,6 +56,12 @@ class ManagementFoodActivity : AppCompatActivity() {
                     getDatabaseData()
                 }
             }
+
+        findViewById<MaterialButton>(R.id.add_food_button).setOnClickListener {
+            activityResultLauncher.launch(Intent(this, CreateFoodActivity::class.java))
+        }
+
+
 
         foodListAdapter = FoodListAdapter(this, foodList, activityResultLauncher)
 

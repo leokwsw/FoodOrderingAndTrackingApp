@@ -23,7 +23,8 @@ class FoodListAdapter(
                 R.layout.item_food,
                 parent,
                 false
-            )
+            ),
+            ::removeAt
         )
     }
 
@@ -33,7 +34,12 @@ class FoodListAdapter(
     }
 
     override fun onBindViewHolder(holder: FoodItemViewHolder, position: Int) {
-        holder.onBindData(data[position], activityResultLauncher)
+        holder.onBindData(position, data[position], activityResultLauncher)
+    }
+
+    private fun removeAt(position: Int) {
+        data.removeAt(position)
+        notifyItemRemoved(position)
     }
 
 }
