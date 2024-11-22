@@ -8,6 +8,7 @@
     android:padding="16dp"
     tools:context=".DeliveryTrackingActivity">
 
+    <!-- 标题 -->
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitle"
         android:layout_width="0dp"
@@ -21,66 +22,59 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- 外卖状态 -->
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvOrderStatus"
+        android:id="@+id/tvDeliveryStatus"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Order Status: Preparing"
+        android:layout_marginTop="16dp"
+        android:text="Delivery Status: On the Way"
         android:textSize="18sp"
         android:padding="8dp"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- 预计时间 -->
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvLocation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:padding="8dp"
-        android:text="Current Location: Restaurant"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvOrderStatus" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvDistance"
+        android:id="@+id/tvEstimatedTime"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:padding="8dp"
-        android:text="Distance: 2.5 km"
+        android:text="Estimated Time: 15 mins"
         android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/tvLocation"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tvDeliveryStatus"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- 外卖员联系方式 -->
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvDeliveryPersonContact"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:padding="8dp"
         android:text="Delivery Person Contact: 123-456-7890"
         android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/tvDistance"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tvEstimatedTime"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- 商家联系方式 -->
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMerchantContact"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:padding="8dp"
         android:text="Merchant Contact: 098-765-4321"
         android:textSize="18sp"
+        android:padding="8dp"
         app:layout_constraintTop_toBottomOf="@id/tvDeliveryPersonContact"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- 地图布局 -->
     <FrameLayout
         android:id="@+id/mapContainer"
         android:layout_width="0dp"
