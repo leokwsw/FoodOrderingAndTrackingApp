@@ -22,9 +22,11 @@ mockitoCore = "5.1.1"
 mockitoCoreVersion = "3.12.4"
 mockitoKotlin = "4.0.0"
 monitor = "1.7.2"
+playServicesMaps = "19.0.0"
 recyclerview = "1.3.2"
 robolectric = "4.9"
 firebaseStorage = "21.0.1"
+secretsGradlePlugin = "2.0.1"
 
 [libraries]
 androidx-core = { module = "androidx.test:core", version.ref = "core" }
@@ -50,8 +52,10 @@ mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore
 mockito-core-v3124 = { module = "org.mockito:mockito-core", version.ref = "mockitoCoreVersion" }
 mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
 androidx-monitor = { group = "androidx.test", name = "monitor", version.ref = "monitor" }
+play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMaps" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 firebase-storage = { group = "com.google.firebase", name = "firebase-storage", version.ref = "firebaseStorage" }
+secrets-gradle-plugin = { module = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin", version.ref = "secretsGradlePlugin" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
