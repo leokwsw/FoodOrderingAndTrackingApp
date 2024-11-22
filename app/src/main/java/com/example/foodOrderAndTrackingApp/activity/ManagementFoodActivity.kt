@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -18,6 +19,7 @@ import com.example.foodOrderAndTrackingApp.module.Food
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.firestore
@@ -27,6 +29,8 @@ class ManagementFoodActivity : AppCompatActivity() {
     private var foodList: ArrayList<Food> = arrayListOf()
     private lateinit var db: FirebaseFirestore
     private lateinit var foodListAdapter: FoodListAdapter
+
+    private var isAdmin = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,6 +79,19 @@ class ManagementFoodActivity : AppCompatActivity() {
 
             this.adapter = foodListAdapter
 
+        }
+
+        val uid = Firebase.auth.uid
+        if (!uid.isNullOrEmpty()) {
+            Log.d("RunTime", "user/${uid}")
+            db.collection("user").document(uid).get().addOnSuccessListener { docs ->
+                if (docs != null) {
+                    val role = docs.data!!["role"]
+                    isAdmin = role == "Admin"
+
+                    findViewById<MaterialButton>(R.id.add_food_button).visibility = View.VISIBLE
+                }
+            }
         }
     }
 

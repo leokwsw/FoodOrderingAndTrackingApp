@@ -50,12 +50,12 @@ class RegisterActivity : AppCompatActivity() {
                         Log.d(TAG, "createUserWithEmail:success")
                         val user = auth.currentUser
                         Log.d(TAG, user!!.uid)
-
-                        db.collection("user").add(
+                        db.collection("user").document(user.uid).set(
                             hashMapOf(
                                 "user_id" to user.uid,
                                 "user_name" to userName.toString(),
-                                "email" to email.toString()
+                                "email" to email.toString(),
+                                "role" to "User"
                             )
                         ).addOnSuccessListener {
                             Log.d(TAG, "DocumentSnapshot successfully written!")
