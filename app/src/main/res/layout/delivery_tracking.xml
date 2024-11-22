@@ -8,7 +8,6 @@
     android:padding="16dp"
     tools:context=".DeliveryTrackingActivity">
 
-    <!-- 标题 -->
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitle"
         android:layout_width="0dp"
@@ -22,7 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- 外卖状态 -->
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvDeliveryStatus"
         android:layout_width="0dp"
@@ -35,7 +33,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- 预计时间 -->
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvEstimatedTime"
         android:layout_width="0dp"
@@ -48,7 +45,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- 外卖员联系方式 -->
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvDeliveryPersonContact"
         android:layout_width="0dp"
@@ -61,7 +57,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- 商家联系方式 -->
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMerchantContact"
         android:layout_width="0dp"
@@ -74,7 +69,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- 地图布局 -->
     <FrameLayout
         android:id="@+id/mapContainer"
         android:layout_width="0dp"
