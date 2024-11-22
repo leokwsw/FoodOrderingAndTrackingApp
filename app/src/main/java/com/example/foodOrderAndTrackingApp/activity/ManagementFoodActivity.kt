@@ -61,7 +61,9 @@ class ManagementFoodActivity : AppCompatActivity() {
             activityResultLauncher.launch(Intent(this, CreateFoodActivity::class.java))
         }
 
-
+        findViewById<MaterialButton>(R.id.delivery_tracking_button).setOnClickListener {
+            startActivity(Intent(this, DeliveryTrackingActivity::class.java))
+        }
 
         foodListAdapter = FoodListAdapter(this, foodList, activityResultLauncher)
 

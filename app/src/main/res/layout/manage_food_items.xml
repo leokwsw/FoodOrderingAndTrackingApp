@@ -67,6 +67,14 @@
                 android:text="Add Food" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/delivery_tracking_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:text="Delivery Tracking" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/edit_food_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

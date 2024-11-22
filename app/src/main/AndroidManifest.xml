@@ -25,6 +25,9 @@
             android:name=".activity.CreateFoodActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.DeliveryTrackingActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
