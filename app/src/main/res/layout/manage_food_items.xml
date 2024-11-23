@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="16dp"
-            android:text="Manage Food Items"
+            android:text="Menu"
             android:textSize="24sp"
             android:textStyle="bold" />
 
