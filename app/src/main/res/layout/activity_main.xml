@@ -25,12 +25,14 @@
             android:id="@+id/btn_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#FF8C00"
             android:text="Register" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#FF8C00"
             android:text="Login" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
