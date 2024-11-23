@@ -14,7 +14,8 @@ import com.example.foodOrderAndTrackingApp.module.Food
 class FoodListAdapter(
     private val context: Context,
     private val data: ArrayList<Food>,
-    private val activityResultLauncher: ActivityResultLauncher<Intent>
+    private val activityResultLauncher: ActivityResultLauncher<Intent>,
+    private val listener: (food: Food, count: Int) -> Unit
 ) : RecyclerView.Adapter<FoodItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodItemViewHolder {
         return FoodItemViewHolder(
@@ -24,7 +25,8 @@ class FoodListAdapter(
                 parent,
                 false
             ),
-            ::removeAt
+            ::removeAt,
+            listener
         )
     }
 

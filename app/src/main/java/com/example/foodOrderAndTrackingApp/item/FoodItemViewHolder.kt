@@ -20,7 +20,9 @@ import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
 
 class FoodItemViewHolder(
-    private val context: Context, itemView: View, private val removeAt: (position: Int) -> Unit
+    private val context: Context, itemView: View,
+    private val removeAt: (position: Int) -> Unit,
+    private val listener: (food: Food, count: Int) -> Unit
 ) : RecyclerView.ViewHolder(itemView) {
 
     private var count: Int = 0
@@ -49,12 +51,14 @@ class FoodItemViewHolder(
             setOnClickListener {
                 count++
                 updateLayout()
+                listener(food, count)
             }
         }
         itemView.findViewById<MaterialButton>(R.id.btn_remove).apply {
             setOnClickListener {
                 count--
                 updateLayout()
+                listener(food, count)
             }
         }
 

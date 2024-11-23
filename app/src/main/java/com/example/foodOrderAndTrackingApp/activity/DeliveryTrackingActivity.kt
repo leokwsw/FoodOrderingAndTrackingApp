@@ -3,6 +3,7 @@ package com.example.foodOrderAndTrackingApp.activity
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.foodOrderAndTrackingApp.R
@@ -25,6 +26,13 @@ class DeliveryTrackingActivity : AppCompatActivity(), OnMapReadyCallback {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        intent.extras?.let {
+            if (it.containsKey("OrderId") && it.getString("OrderId") != null) {
+                val orderId = it.getString("OrderId")
+                findViewById<AppCompatTextView>(R.id.tvOrderId).setText("Order Id : ${orderId}")
+            }
         }
 
         findViewById<MaterialButton>(R.id.btn_back).setOnClickListener {

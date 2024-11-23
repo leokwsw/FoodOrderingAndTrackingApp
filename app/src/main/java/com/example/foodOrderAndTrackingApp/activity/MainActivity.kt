@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.foodOrderAndTrackingApp.R
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
 
         auth = Firebase.auth
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         if (auth.currentUser != null) {
             startActivity(Intent(this, ManagementFoodActivity::class.java).apply {
