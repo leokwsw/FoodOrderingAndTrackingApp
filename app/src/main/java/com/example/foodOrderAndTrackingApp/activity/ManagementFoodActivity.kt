@@ -141,8 +141,11 @@ class ManagementFoodActivity : AppCompatActivity() {
                 if (docs != null) {
                     val role = docs.data!!["role"]
                     isAdmin = role == "Admin"
-
-                    findViewById<MaterialButton>(R.id.add_food_button).visibility = View.VISIBLE
+                    if (isAdmin) {
+                        findViewById<MaterialButton>(R.id.add_food_button).visibility = View.VISIBLE
+                    } else {
+                        findViewById<MaterialButton>(R.id.add_food_button).visibility = View.GONE
+                    }
                 }
             }
         }
