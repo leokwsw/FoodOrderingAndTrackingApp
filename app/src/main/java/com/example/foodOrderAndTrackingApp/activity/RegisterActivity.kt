@@ -1,5 +1,6 @@
 package com.example.foodOrderAndTrackingApp.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.foodOrderAndTrackingApp.R
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -26,6 +28,12 @@ class RegisterActivity : AppCompatActivity() {
         db = Firebase.firestore
         enableEdgeToEdge()
         setContentView(R.layout.activity_register)
+
+        findViewById<MaterialButton>(R.id.login_redirect).setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java).apply {
+                // this.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            })
+        }
 
         findViewById<Button>(R.id.register_button).setOnClickListener {
             val userName = findViewById<EditText>(R.id.username).text
@@ -63,8 +71,9 @@ class RegisterActivity : AppCompatActivity() {
                             Log.w(TAG, "Error writing document", e)
                         }
 
-                        this.finish()
-
+                        startActivity(Intent(this, ManagementFoodActivity::class.java).apply {
+                            this.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        })
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "createUserWithEmail:failure", task.exception)

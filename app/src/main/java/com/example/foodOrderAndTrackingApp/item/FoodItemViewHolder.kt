@@ -62,6 +62,10 @@ class FoodItemViewHolder(
             }
         }
 
+        itemView.findViewById<AppCompatTextView>(R.id.tv_price).apply {
+            text = "$ ${food.price}"
+        }
+
         val uid = Firebase.auth.uid
         if (!uid.isNullOrEmpty()) {
             Firebase.firestore

@@ -68,8 +68,9 @@ class LoginActivity : AppCompatActivity() {
                                 Intent(
                                     this@LoginActivity,
                                     ManagementFoodActivity::class.java
-                                )
-                            )
+                                ).apply {
+                                    this.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                })
                         } else {
                             this.text = "Login"
                             this.isEnabled = true
