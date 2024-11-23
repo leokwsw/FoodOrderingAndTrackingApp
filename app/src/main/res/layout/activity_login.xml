@@ -54,7 +54,6 @@
             android:background="@android:color/transparent"
             android:gravity="center"
             android:padding="0dp"
-            android:background="#FF8C00"
             android:text="Don't have an account? Sign up"
             android:textColor="@android:color/holo_blue_dark" />
 
